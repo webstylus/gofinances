@@ -12,6 +12,8 @@ import { Dashboard } from './src/screens/Dashbaord'
 import theme from './src/global/styles/theme'
 import AppLoading from 'expo-app-loading/build/AppLoadingNativeWrapper'
 import { StatusBar } from 'react-native'
+import { Register } from './src/screens/Register'
+import { CategorySelect } from './src/screens/CategorySelect'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,8 +28,13 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar barStyle={'light-content'} backgroundColor={'#5636D3'} />
-      <Dashboard />
+      <StatusBar
+        barStyle={'light-content'}
+        translucent
+        backgroundColor={'#5636D3'}
+      />
+      {/*<Dashboard />*/}
+      <Register />
     </ThemeProvider>
   )
 }
