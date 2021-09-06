@@ -13,7 +13,6 @@ import theme from './src/global/styles/theme'
 import AppLoading from 'expo-app-loading/build/AppLoadingNativeWrapper'
 import { StatusBar } from 'react-native'
 import { Register } from './src/screens/Register'
-import { CategorySelect } from './src/screens/CategorySelect'
 
 export default function App() {
   const [fontsLoaded] = useFonts({

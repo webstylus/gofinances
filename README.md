@@ -11,6 +11,8 @@ Principais pacotes extra instalados
 - styled-components
 - react-native-responsive-fontsize
 - react-native-iphone-x-helper
+- react-hook-form
+- yup
 
 Nesta aplicação utilizamos de forma inteligente e dinâmica o styled-components 
 para customizar as classes que estilo, focando na reutilização do código. 
