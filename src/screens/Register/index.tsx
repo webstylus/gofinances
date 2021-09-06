@@ -21,7 +21,7 @@ export function Register() {
   const [category, setCategory] = useState({
     key: 'category',
     name: 'Categoria',
-    icon: null
+    icon: 'list'
   })
 
   function handleOpenSelectCategoryModal() {

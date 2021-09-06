@@ -17,7 +17,7 @@ import { Button } from '../../components/Form/Button'
 interface CategoryProps {
   key: string
   name: string
-  icon?: string
+  icon: string
 }
 
 interface Props {
