@@ -8,6 +8,7 @@ import {
 
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 import { DataListProps } from '.'
+import { BorderlessButton } from 'react-native-gesture-handler'
 
 export const Container = styled.View`
   flex: 1;
@@ -84,3 +85,5 @@ export const TransactionsList = styled(
     paddingBottom: getBottomSpace()
   }
 })``
+
+export const LogoutButton = styled(BorderlessButton)``

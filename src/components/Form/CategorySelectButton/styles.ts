@@ -1,8 +1,11 @@
 import styled from 'styled-components/native'
 import { Feather, MaterialIcons } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { RectButton } from 'react-native-gesture-handler'
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled(RectButton).attrs({
+  activeOpacity: 0.7
+})`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
