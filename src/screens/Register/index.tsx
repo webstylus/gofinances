@@ -12,6 +12,9 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 
+import uuid from 'react-native-uuid'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native'
 import {
   Container,
   Title,
@@ -20,13 +23,19 @@ import {
   Fields,
   TransactionsTypes
 } from './styles'
+import { COLLECTION_TRANSACTIONS } from '../../config/database'
 
 interface FormData {
   name: string
   amount: string
 }
 
+interface NavigationProps {
+  navigate: (screen: string) => void
+}
+
 export function Register() {
+  const navigation = useNavigation<NavigationProps>()
   const [transactionType, setTransactionType] = useState('')
   const [categoryModalOpen, setCategoryModalOpen] = useState(false)
   const [category, setCategory] = useState({
@@ -43,6 +52,7 @@ export function Register() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schema)
@@ -56,23 +66,46 @@ export function Register() {
     setCategoryModalOpen(false)
   }
 
-  function handleTransactionTypeSelect(type: 'up' | 'down') {
+  function handleTransactionTypeSelect(type: 'positive' | 'negative') {
     setTransactionType(type)
   }
 
-  function handleRegister(form: FormData) {
+  async function handleRegister(form: FormData) {
     if (!transactionType)
       return Alert.alert('Seleção obrigatória', 'Selecione o tipo da transação')
     if (category.key === 'category')
       return Alert.alert('Seleção obrigatória', 'Selecione a categoria')
 
-    const data = {
+    const newTransaction = {
+      id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      transactionType,
-      category: category.key
+      type: transactionType,
+      category: category.key,
+      date: new Date()
     }
-    console.log(data)
+    try {
+      const data = await AsyncStorage.getItem(COLLECTION_TRANSACTIONS)
+      const currentData = data ? JSON.parse(data) : []
+      const dataFormatted = [...currentData, newTransaction]
+
+      await AsyncStorage.setItem(
+        COLLECTION_TRANSACTIONS,
+        JSON.stringify(dataFormatted)
+      )
+
+      reset()
+      setTransactionType('')
+      setCategory({
+        key: 'category',
+        name: 'Categoria',
+        icon: 'list'
+      })
+      navigation.navigate('Listagem')
+    } catch (e) {
+      console.log(e)
+      Alert.alert('Falha!', 'Não foi possível registrar as informações')
+    }
   }
 
   return (
@@ -104,14 +137,14 @@ export function Register() {
               <TransactionTypeButton
                 title={'Entrada'}
                 type={'up'}
-                onPress={() => handleTransactionTypeSelect('up')}
-                isActive={transactionType === 'up'}
+                onPress={() => handleTransactionTypeSelect('positive')}
+                isActive={transactionType === 'positive'}
               />
               <TransactionTypeButton
                 title={'Saída'}
                 type={'down'}
-                onPress={() => handleTransactionTypeSelect('down')}
-                isActive={transactionType === 'down'}
+                onPress={() => handleTransactionTypeSelect('negative')}
+                isActive={transactionType === 'negative'}
               />
             </TransactionsTypes>
 

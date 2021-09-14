@@ -5,10 +5,9 @@ import {
   getBottomSpace,
   getStatusBarHeight
 } from 'react-native-iphone-x-helper'
-
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
-import { DataListProps } from '.'
 import { BorderlessButton } from 'react-native-gesture-handler'
+import { DataListProps } from '.'
 
 export const Container = styled.View`
   flex: 1;
@@ -57,7 +56,6 @@ export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${RFValue(24)}px;
 `
-
 export const HighlightCards = styled.ScrollView.attrs({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
@@ -87,3 +85,19 @@ export const TransactionsList = styled(
 })``
 
 export const LogoutButton = styled(BorderlessButton)``
+export const SubHeader = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+export const TrashButton = styled(BorderlessButton)``
+export const TrashIcon = styled(Feather)`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFValue(20)}px;
+`
+
+export const LoadContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
