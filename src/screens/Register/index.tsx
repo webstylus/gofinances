@@ -48,6 +48,7 @@ export function Register() {
     amount: Yup.number()
       .typeError('Informe um valor numérico')
       .positive('O Valor não pode ser negativo')
+      .required('O valor obrigatório')
   })
   const {
     control,

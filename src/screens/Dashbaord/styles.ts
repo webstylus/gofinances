@@ -95,9 +95,3 @@ export const TrashIcon = styled(Feather)`
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFValue(20)}px;
 `
-
-export const LoadContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`

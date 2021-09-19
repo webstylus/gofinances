@@ -19,20 +19,19 @@ import {
   LogoutButton,
   SubHeader,
   TrashButton,
-  TrashIcon,
-  LoadContainer
+  TrashIcon
 } from './styles'
 
+import { Loading } from '../../components/Loading'
 import { HighlightCard } from '../../components/HighlightCard'
 import {
   TransactionCard,
   TransactionCardProps
 } from '../../components/TransactionCard'
+import { Alert } from 'react-native'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { COLLECTION_TRANSACTIONS } from '../../config/database'
-import { Alert, ActivityIndicator } from 'react-native'
-import { useTheme } from 'styled-components'
 
 export interface DataListProps extends TransactionCardProps {
   id: string
@@ -50,7 +49,6 @@ interface HighLightData {
 }
 
 export function Dashboard() {
-  const theme = useTheme()
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState<DataListProps[]>([])
   const [highLightData, setHighLightData] = useState<HighLightData>(
@@ -173,10 +171,6 @@ export function Dashboard() {
     )
   }
 
-  useEffect(() => {
-    loadTransactions().then((r) => {})
-  }, [])
-
   useFocusEffect(
     useCallback(() => {
       loadTransactions().then((r) => {})
@@ -186,9 +180,7 @@ export function Dashboard() {
   return (
     <Container>
       {isLoading ? (
-        <LoadContainer>
-          <ActivityIndicator color={theme.colors.primary} size={50} />
-        </LoadContainer>
+        <Loading />
       ) : (
         <>
           <Header>
