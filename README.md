@@ -3,6 +3,20 @@
 Aplicação Expo desenvolvida em React Native usando TypeScript
 ![alt text](https://github.com/webstylus/gofinances/blob/main/src/assets/images/cover.png?raw=true)
 
+
+Google Credentials (https://console.cloud.google.com/)
+
+`Configure your .env`
+
+- [Expo Guide Authentication](https://docs.expo.dev/guides/authentication/#google)
+- [Google Credentials](https://console.cloud.google.com/)
+
+
+    CLIENT_ID=
+    REDIRECT_URI=
+    
+
+
 Principais pacotes extra instalados
 - expo-font
 - @expo-google-fonts/poppins
@@ -19,6 +33,9 @@ Principais pacotes extra instalados
 - intl
 - @react-native-async-storage/async-storage
 - react-native-uuid
+- react-native-svg-transformer
+- [expo-auth-session](https://docs.expo.dev/versions/latest/sdk/auth-session/)
+- expo-random
 
 Nesta aplicação utilizamos de forma inteligente e dinâmica o styled-components 
 para customizar as classes que estilo, focando na reutilização do código. 

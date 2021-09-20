@@ -2,6 +2,8 @@
   "expo": {
     "name": "gofinances",
     "slug": "gofinances",
+    "owner": "webstylus",
+    "scheme": "gofinances",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
