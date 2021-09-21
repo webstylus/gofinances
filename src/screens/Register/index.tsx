@@ -24,6 +24,7 @@ import {
   TransactionsTypes
 } from './styles'
 import { COLLECTION_TRANSACTIONS } from '../../config/database'
+import { useAuth } from '../../hooks/auth'
 
 interface FormData {
   name: string
@@ -35,6 +36,7 @@ interface NavigationProps {
 }
 
 export function Register() {
+  const { user } = useAuth()
   const navigation = useNavigation<NavigationProps>()
   const [transactionType, setTransactionType] = useState('')
   const [categoryModalOpen, setCategoryModalOpen] = useState(false)
@@ -86,12 +88,14 @@ export function Register() {
       date: new Date()
     }
     try {
-      const data = await AsyncStorage.getItem(COLLECTION_TRANSACTIONS)
+      const data = await AsyncStorage.getItem(
+        `${COLLECTION_TRANSACTIONS}:${user.id}`
+      )
       const currentData = data ? JSON.parse(data) : []
       const dataFormatted = [...currentData, newTransaction]
 
       await AsyncStorage.setItem(
-        COLLECTION_TRANSACTIONS,
+        `${COLLECTION_TRANSACTIONS}:${user.id}`,
         JSON.stringify(dataFormatted)
       )
 

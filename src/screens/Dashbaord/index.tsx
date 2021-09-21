@@ -61,12 +61,18 @@ export function Dashboard() {
     collection: DataListProps[],
     type: 'positive' | 'negative'
   ) {
+    const collectionFiltered = collection.filter(
+      (transaction) => transaction.type === type
+    )
+
+    if (collectionFiltered.length === 0) return 0
+
     const lastTransaction = new Date(
       Math.max.apply(
         Math,
-        collection
-          .filter((transaction) => transaction.type === type)
-          .map((transaction) => new Date(transaction.date).getTime())
+        collectionFiltered.map((transaction) =>
+          new Date(transaction.date).getTime()
+        )
       )
     )
 
@@ -76,7 +82,9 @@ export function Dashboard() {
     )}`
   }
   async function loadTransactions() {
-    const response = await AsyncStorage.getItem(COLLECTION_TRANSACTIONS)
+    const response = await AsyncStorage.getItem(
+      `${COLLECTION_TRANSACTIONS}:${user.id}`
+    )
     const transactions = response ? JSON.parse(response) : []
 
     let entriesTotal = 0
@@ -121,7 +129,10 @@ export function Dashboard() {
       transactions,
       'negative'
     )
-    const totalInterval = `${lastTransactionEntries} à ${lastTransactionExpensive}`
+    const totalInterval =
+      lastTransactionExpensive === 0
+        ? 'Não há transações'
+        : `01 à ${lastTransactionExpensive}`
 
     const total = entriesTotal - expensiveTotal
     setHighLightData({
@@ -130,7 +141,10 @@ export function Dashboard() {
           style: 'currency',
           currency: 'BRL'
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`
+        lastTransaction:
+          lastTransactionEntries === 0
+            ? 'Não há transações'
+            : `Última entrada dia ${lastTransactionEntries}`
       },
 
       expensive: {
@@ -138,7 +152,10 @@ export function Dashboard() {
           style: 'currency',
           currency: 'BRL'
         }),
-        lastTransaction: `Última saída dia ${lastTransactionExpensive}`
+        lastTransaction:
+          lastTransactionExpensive === 0
+            ? 'Não há transações'
+            : `Última saída dia ${lastTransactionExpensive}`
       },
       total: {
         amount: total.toLocaleString('pt-BR', {
@@ -165,7 +182,7 @@ export function Dashboard() {
           style: 'destructive',
           text: 'Sim',
           onPress: () => {
-            AsyncStorage.removeItem(COLLECTION_TRANSACTIONS)
+            AsyncStorage.removeItem(`${COLLECTION_TRANSACTIONS}:${user.id}`)
             loadTransactions().then((r) => {})
           }
         }

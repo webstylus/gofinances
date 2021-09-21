@@ -25,6 +25,7 @@ import { addMonths, format, subMonths } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { Loading } from '../../components/Loading'
 import { useFocusEffect } from '@react-navigation/native'
+import { useAuth } from '../../hooks/auth'
 
 interface Props extends TransactionCardProps {}
 interface CategoryName {
@@ -41,6 +42,7 @@ export function Resume() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [totalByCategories, setTotalByCategories] = useState<CategoryName[]>([])
   const theme = useTheme()
+  const { user } = useAuth()
 
   function handleDateChange(action: 'next' | 'prev') {
     if (action === 'next') {
@@ -53,7 +55,9 @@ export function Resume() {
   }
   async function loadData() {
     setIsLoading(true)
-    const response = await AsyncStorage.getItem(COLLECTION_TRANSACTIONS)
+    const response = await AsyncStorage.getItem(
+      `${COLLECTION_TRANSACTIONS}:${user.id}`
+    )
     const responseFormatted = response ? JSON.parse(response) : []
     const totalByCategory: CategoryName[] = []
 
