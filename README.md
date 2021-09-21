@@ -14,7 +14,6 @@ Google Credentials (https://console.cloud.google.com/)
 
     CLIENT_ID=
     REDIRECT_URI=
-    
 
 
 Principais pacotes extra instalados
@@ -39,3 +38,7 @@ Principais pacotes extra instalados
 
 Nesta aplicação utilizamos de forma inteligente e dinâmica o styled-components 
 para customizar as classes que estilo, focando na reutilização do código. 
+
+#### UI Avatars https://ui-avatars.com/
+
+Utilizado para substituir a imagem do avatar do usuário quando não existe uma picture obtida do perfil de login.

@@ -8,7 +8,7 @@ export function Loading() {
   const theme = useTheme()
   return (
     <LoadContainer>
-      <ActivityIndicator color={theme.colors.primary} size={50} />
+      <ActivityIndicator color={theme.colors.primary} size={34} />
     </LoadContainer>
   )
 }

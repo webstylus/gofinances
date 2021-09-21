@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SignInSocialButton } from '../../components/SignInSocialButton'
 
@@ -16,30 +16,37 @@ import {
   FooterWrapper
 } from './styles'
 import { Alert } from 'react-native'
+import { Loading } from '../../components/Loading'
 
 export function SignIn() {
+  const [isLoading, setIsLoading] = useState(false)
   const { signInWithGoogle, signInWithApple } = useAuth()
 
   async function handleSignInWithGoogle() {
     try {
-      await signInWithGoogle()
+      setIsLoading(true)
+      return await signInWithGoogle()
     } catch (e) {
       console.log(e)
       Alert.alert(
         'Falha de autenticação',
         'Não foi possível conectar com a conta do Google'
       )
+      setIsLoading(false)
     }
   }
+
   async function handleSignInWithApple() {
     try {
-      await signInWithApple()
+      setIsLoading(true)
+      return await signInWithApple()
     } catch (e) {
       console.log(e)
       Alert.alert(
         'Falha de autenticação',
         'Não foi possível conectar com a conta Apple'
       )
+      setIsLoading(false)
     }
   }
 
@@ -70,6 +77,8 @@ export function SignIn() {
             onPress={handleSignInWithApple}
           />
         </FooterWrapper>
+
+        {isLoading && <Loading />}
       </Footer>
     </Container>
   )
