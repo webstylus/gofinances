@@ -15,7 +15,7 @@ import {
   Footer,
   FooterWrapper
 } from './styles'
-import { Alert } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import { Loading } from '../../components/Loading'
 
 export function SignIn() {
@@ -71,11 +71,13 @@ export function SignIn() {
             svg={GoogleSvg}
             onPress={handleSignInWithGoogle}
           />
-          <SignInSocialButton
-            title={'Entrar com Apple'}
-            svg={AppleSvg}
-            onPress={handleSignInWithApple}
-          />
+          {Platform.OS === 'ios' && (
+            <SignInSocialButton
+              title={'Entrar com Apple'}
+              svg={AppleSvg}
+              onPress={handleSignInWithApple}
+            />
+          )}
         </FooterWrapper>
 
         {isLoading && <Loading />}
