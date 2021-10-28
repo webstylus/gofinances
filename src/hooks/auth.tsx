@@ -27,8 +27,11 @@ interface UserProps {
 interface AuthContextData {
   user: UserProps
   userStorageIsLoading: boolean
+
   signInWithGoogle(): Promise<void>
+
   signInWithApple(): Promise<void>
+
   signOut(): Promise<void>
 }
 
@@ -72,6 +75,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         await AsyncStorage.setItem(COLLECTION_USER, JSON.stringify(userLogged))
       }
     } catch (e) {
+      console.log(e)
       throw new Error(e)
     }
   }
