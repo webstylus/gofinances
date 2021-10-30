@@ -14,9 +14,9 @@ interface Props extends RectButtonProps {
   onPress: () => void
 }
 
-export function CategorySelectButton({ title, icon, onPress }: Props) {
+export function CategorySelectButton({ title, icon, onPress, ...rest }: Props) {
   return (
-    <Container onPress={onPress}>
+    <Container onPress={onPress} {...rest}>
       <CategorySelected>
         {icon && <IconFeather name={icon} />}
         <Category>{title}</Category>
