@@ -29,12 +29,11 @@ it('should be able to sign in with Google account existing', async () => {
     })
   )
 
-  const { result, waitForNextUpdate } = renderHook(() => useAuth(), {
+  const { result } = renderHook(() => useAuth(), {
     wrapper: AuthProvider
   })
 
   await act(async () => await result.current.signInWithGoogle())
-  await waitForNextUpdate()
 
   expect(result.current.user.email).toBe('rodrigo.goncalves@rocketseat.team')
 })
