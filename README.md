@@ -6,7 +6,7 @@ Aplicação Expo desenvolvida em React Native usando TypeScript
 
 Google Credentials (https://console.cloud.google.com/)
 
-`Configure your .env`
+`Configure seu .env`
 
 - [Expo Guide Authentication](https://docs.expo.dev/guides/authentication/#google)
 - [Google Credentials](https://console.cloud.google.com/)
@@ -37,7 +37,7 @@ Principais pacotes extra instalados
 - expo-random
 
 Nesta aplicação utilizamos de forma inteligente e dinâmica o styled-components 
-para customizar as classes que estilo, focando na reutilização do código. 
+para customizar as classes de estilo, focando na reutilização do código. 
 
 #### UI Avatars https://ui-avatars.com/
 
