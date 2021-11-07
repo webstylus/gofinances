@@ -32,6 +32,7 @@ export function SignIn() {
         'Falha de autenticação',
         'Não foi possível conectar com a conta do Google'
       )
+    } finally {
       setIsLoading(false)
     }
   }

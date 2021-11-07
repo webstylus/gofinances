@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 import { Feather } from '@expo/vector-icons'
-import { FlatList } from 'react-native'
+import { FlatList, Platform } from 'react-native'
 import {
   getBottomSpace,
   getStatusBarHeight
@@ -28,7 +28,7 @@ export const UserWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: ${RFValue(getStatusBarHeight())}px;
+  margin-top: ${RFValue(getStatusBarHeight() + 20)}px;
 `
 export const UserInfo = styled.View`
   flex-direction: row;

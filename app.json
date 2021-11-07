@@ -1,6 +1,7 @@
 {
   "expo": {
-    "name": "gofinances",
+    "name": "Web Stylys Go Finances",
+    "icon": "./assets/logo.png",
     "slug": "gofinances",
     "owner": "webstylus",
     "scheme": "gofinances",
@@ -8,9 +9,13 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "bundleIdentifier": "com.webstylus.gofinances",
+      "buildNumber": "1.0.1"
+    },
     "android": {
-      "package": "com.webstylus.gofinances"
+      "package": "com.webstylus.gofinances",
+      "versionCode": 1
     }
-  },
-  "name": "gofinances"
+  }
 }

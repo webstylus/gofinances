@@ -20,8 +20,7 @@ export function AppRoutes() {
         tabBarLabelPosition: 'beside-icon',
         headerShown: false,
         tabBarStyle: {
-          paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: 60
+          height: Platform.OS === 'ios' ? 90 : 60
         },
         tabBarLabelStyle: {
           fontFamily: theme.fonts.regular

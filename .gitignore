@@ -113,3 +113,5 @@ buck-out/
 web-build/
 
 # @end expo-cli
+
+./resources/*.ipa
