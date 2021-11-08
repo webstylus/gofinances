@@ -1,11 +1,17 @@
 {
   "expo": {
-    "name": "Web Stylys Go Finances",
+    "name": "gofinances",
     "icon": "./assets/logo.png",
     "slug": "gofinances",
     "owner": "webstylus",
     "scheme": "gofinances",
     "version": "1.0.0",
+    "privacy": "public",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#5636D3"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -16,6 +22,8 @@
     "android": {
       "package": "com.webstylus.gofinances",
       "versionCode": 1
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/webstylus/gofinances"
   }
 }
